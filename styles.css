@@ -41,7 +41,7 @@ body{
 }
 .brand{display:flex;gap:16px;align-items:center}
 .avatar{
-  width:72px;height:72px;border-radius:14px;background:linear-gradient(180deg,var(--glass), rgba(0,0,0,0.02));
+  width:72px;height:72px;border-radius:14px;object-fit:cover;display:block;background:linear-gradient(180deg,var(--glass), rgba(0,0,0,0.02));
   border:1px solid rgba(53,75,87,0.06);box-shadow:var(--shadow-1);
 }
 .meta .name{margin:0;font-weight:800;font-size:20px;color:var(--primary);letter-spacing:0.2px}
