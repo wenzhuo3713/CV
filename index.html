@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>个人简历 — Minimal Luxury</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="viewport">
+    <header class="header">
+      <div class="brand">
+        <div class="avatar" aria-hidden="true"></div>
+        <div class="meta">
+          <h1 class="name">王泽</h1>
+          <p class="role">产品 / 前���工程师</p>
+        </div>
+      </div>
+      <nav class="nav" aria-label="主导航">
+        <button data-target="intro" class="nav-btn active">简介</button>
+        <button data-target="skills" class="nav-btn">技能</button>
+        <button data-target="work" class="nav-btn">工作</button>
+        <button data-target="projects" class="nav-btn">项目</button>
+        <button data-target="edu" class="nav-btn">教育</button>
+        <button data-target="awards" class="nav-btn">荣誉</button>
+        <button data-target="about" class="nav-btn">自评</button>
+      </nav>
+    </header>
+
+    <main class="container" id="main">
+      <section id="intro" class="panel active" tabindex="0">
+        <div class="panel-inner">
+          <h2 class="panel-title">个人简介</h2>
+          <p class="lead">具有 6 年互联网产品与前端经验，擅长将复杂需求转化为清晰、高效的界面交互。熟悉 React / Vue / TypeScript，关注产品体验与性能优化，追求简洁与精准的视觉语言。</p>
+          <div class="contact">
+            <div>邮箱：<a href="mailto:you@example.com">you@example.com</a></div>
+            <div>地点：上海</div>
+            <div>链接：<a href="#projects">作品集</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="panel" tabindex="0">
+        <div class="panel-inner">
+          <h2 class="panel-title">职业技能</h2>
+          <ul class="skills-grid">
+            <li class="skill-card"><strong>前端工程</strong><span>HTML, CSS, JS, TypeScript, Web 性能</span></li>
+            <li class="skill-card"><strong>框架</strong><span>React, Vue, Next.js, Nuxt</span></li>
+            <li class="skill-card"><strong>工程化</strong><span>Vite, Webpack, CI/CD, 单元测试</span></li>
+            <li class="skill-card"><strong>设计协作</strong><span>Figma, 设计系统, 可访问性</span></li>
+            <li class="skill-card"><strong>后端基础</strong><span>Node.js, REST, GraphQL</span></li>
+            <li class="skill-card"><strong>软技能</strong><span>需求拆解, 跨团队沟通, 指导新人</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="work" class="panel" tabindex="0">
+        <div class="panel-inner">
+          <h2 class="panel-title">工作经历</h2>
+          <div class="timeline">
+            <article class="job">
+              <header>
+                <div class="job-meta">
+                  <h3>高级前端工程师 — 某科技公司</h3>
+                  <span class="muted">2021.05 — 至今</span>
+                </div>
+              </header>
+              <p>负责核心产品前端架构与性能优化，主导组件化设计系统建设，带领 3 人小组交付多个关键项目。</p>
+            </article>
+
+            <article class="job">
+              <header>
+                <div class="job-meta">
+                  <h3>前端工程师 — 创业公司</h3>
+                  <span class="muted">2018.08 — 2021.04</span>
+                </div>
+              </header>
+              <p>从零搭建前端工程体系，参与产品需求到上线的全流程，提升首屏性能并优化用户转化。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="panel" tabindex="0">
+        <div class="panel-inner">
+          <h2 class="panel-title">项目经验</h2>
+          <div class="proj-grid">
+            <article class="proj-card" data-detail="proj-1">
+              <h4>管理后台组件库</h4>
+              <p class="muted">设计 & 架构 / TypeScript / Storybook</p>
+            </article>
+            <article class="proj-card" data-detail="proj-2">
+              <h4>B2B 商城性能改造</h4>
+              <p class="muted">性能优化 / SSR / 架构调整</p>
+            </article>
+            <article class="proj-card" data-detail="proj-3">
+              <h4>数据可视化平台</h4>
+              <p class="muted">可视化 / D3 / 交互设计</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="edu" class="panel" tabindex="0">
+        <div class="panel-inner">
+          <h2 class="panel-title">教育背景</h2>
+          <p class="muted">某大学 — 计算机科学与技术，本科 （2014 — 2018）</p>
+        </div>
+      </section>
+
+      <section id="awards" class="panel" tabindex="0">
+        <div class="panel-inner">
+          <h2 class="panel-title">荣誉证书</h2>
+          <ul class="awards-list">
+            <li>公司年度优秀工程师（2023）</li>
+            <li>前端工程师职业认证（证书号：XXXX）</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="about" class="panel" tabindex="0">
+        <div class="panel-inner">
+          <h2 class="panel-title">自我评价</h2>
+          <p>注重细节与执行力，热衷于做有温度的工程。擅于在复杂场景下保持解法的简洁性，关注长期可维护性与团队协作。</p>
+        </div>
+      </section>
+    </main>
+
+    <div id="detailModal" class="modal" aria-hidden="true">
+      <div class="modal-panel" role="dialog" aria-modal="true">
+        <button class="modal-close" aria-label="关闭">✕</button>
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <small>简历视觉风格：极简轻奢 · 仅用于展示</small>
+    </footer>
+  </div>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>
