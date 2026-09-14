@@ -29,7 +29,9 @@
 
   function renderNavigation() {
     navigation.innerHTML = data.navigation.map((item, index) => `
-      <button data-target="${item.id}" class="nav-btn${index === 0 ? ' active' : ''}">${item.label}</button>
+      ${item.href
+        ? `<a href="${item.href}" class="nav-btn nav-link">${item.label}</a>`
+        : `<button data-target="${item.id}" class="nav-btn${index === 0 ? ' active' : ''}">${item.label}</button>`}
     `).join('');
     navigation.addEventListener('click', (event) => {
       const button = event.target.closest('.nav-btn');

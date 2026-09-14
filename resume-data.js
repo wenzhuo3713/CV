@@ -20,7 +20,8 @@ window.resumeData = {
     { id: 'edu', label: '教育' },
     { id: 'awards', label: '荣誉' },
     { id: 'skills', label: '技能' },
-    { id: 'about', label: '校园' }
+    { id: 'about', label: '校园' },
+    { label: 'App', href: './app.html' }
   ],
   skills: [
     { title: '设计软件', detail: 'Rhino、Photoshop、Illustrator、Keyshot、Figma' },
