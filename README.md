@@ -6,13 +6,19 @@
 
 - index.html — 主页面
 - styles.css — 样式表（CSS 变量，响应式）
-- script.js — 交互逻辑（平滑滚动、弹窗、可见性淡入）
+- resume-data.js — 简历内容数据，后期更新个人信息时优先修改此文件
+- script.js — 数据驱动渲染与交互逻辑（平滑滚动、弹窗、可见性淡入）
+
+模块化维护：
+- 修改姓名、联系方式、经历、项目、奖项等内容：编辑 `resume-data.js`
+- 修改页面结构或渲染方式：编辑 `script.js`
+- 修改视觉样式和响应式布局：编辑 `styles.css`
 
 快速预览：
 1. 将仓库克隆到本地
-2. 在项目目录运行一个静态服务器，例如：
+2. 在项目目录运行 Node 本地预览服务：
 
-   python -m http.server 8000
+   node server.js
 
 3. 浏览器打开 http://localhost:8000
 

@@ -13,129 +13,16 @@
   <div class="viewport">
     <header class="header">
       <div class="brand">
-        <img class="avatar" src="./photo.webp" alt="王文卓照片">
+        <img class="avatar" data-profile="avatar" alt="">
         <div class="meta">
-          <h1 class="name">王文卓</h1>
-          <p class="role">产品设计师 / 珠宝品牌创业者</p>
+          <h1 class="name" data-profile="name"></h1>
+          <p class="role" data-profile="role"></p>
         </div>
       </div>
-      <nav class="nav" aria-label="主导航">
-        <button data-target="intro" class="nav-btn active">概览</button>
-        <button data-target="work" class="nav-btn">工作</button>
-        <button data-target="projects" class="nav-btn">项目</button>
-        <button data-target="edu" class="nav-btn">教育</button>
-        <button data-target="awards" class="nav-btn">荣誉</button>
-        <button data-target="skills" class="nav-btn">技能
-        </button>
-        <button data-target="about" class="nav-btn">校园</button>
-      </nav>
+      <nav class="nav" aria-label="主导航" data-navigation></nav>
     </header>
 
-    <main class="container" id="main">
-      <section id="intro" class="panel active" tabindex="0">
-        <div class="panel-inner">
-          <h2 class="panel-title">关于王文卓</h2>
-          <p class="lead">产品设计专业艺术学学士，现任上海念此石珠宝有限公司联合创始人兼首席产品官。关注东方美学、非遗工艺与当代生活方式的连接，擅长从调研、概念、设计开发到品牌与供应链的全流程推进。</p>
-          <div class="contact">
-            <div>邮箱：<a href="mailto:wangwenzhuo0045@163.com">wangwenzhuo0045@163.com</a></div>
-            <div>电话：+86 15389503713</div>
-            <div>地点：上海</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="skills" class="panel" tabindex="0">
-        <div class="panel-inner">
-          <h2 class="panel-title">技能与兴趣</h2>
-          <ul class="skills-grid">
-            <li class="skill-card"><strong>设计软件</strong><span>Rhino、Photoshop、Illustrator、Keyshot、Figma</span></li>
-            <li class="skill-card"><strong>工艺技能</strong><span>基础珠宝制作技艺、多种非遗工艺、当代珠宝艺术创作</span></li>
-            <li class="skill-card"><strong>产品能力</strong><span>市场调研、概念设计、3D 建模、测试与供应链管理</span></li>
-            <li class="skill-card"><strong>语言</strong><span>中文（母语）、英语（雅思 6.0）</span></li>
-            <li class="skill-card"><strong>音乐</strong><span>小提琴六级（全国社会艺术水平考级）</span></li>
-            <li class="skill-card"><strong>知识产权</strong><span>5 项外观设计专利、1 项实用新型专利、1 项软件著作权、3 项商标</span></li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="work" class="panel" tabindex="0">
-        <div class="panel-inner">
-          <h2 class="panel-title">工作经历</h2>
-          <div class="timeline">
-            <article class="job">
-              <header>
-                <div class="job-meta">
-                  <h3>上海念此石珠宝有限公司｜联合创始人兼首席产品官（CPO）</h3>
-                  <span class="muted">2024.10 — 至今</span>
-                </div>
-              </header>
-              <ul>
-                <li>主导品牌战略从 0 到 1 的制定与实施，定位为“东方美学首饰”，探索 AI 轻量化定制与非遗工艺日常化。</li>
-                <li>全权负责产品设计与开发、品牌建设及供应链管理，完成 B2C 天猫店铺从 0 到 1 的搭建与上线。</li>
-                <li>构建并推进公司知识产权战略，已申请 5 项外观设计专利、1 项实用新型专利、1 项软件著作权及 3 项商标。</li>
-              </ul>
-              <h4>主要成果</h4>
-              <ul>
-                <li>天猫店铺于 2025 年 9 月进入试运营，客单价约 800 元；未进行大规模营销投入，实现天猫 + B2B 总销售额 4.5 万元。</li>
-                <li>已与木雕、苏绣非遗传承人建立合作，形成非遗联名产品储备。</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" class="panel" tabindex="0">
-        <div class="panel-inner">
-          <h2 class="panel-title">项目经验</h2>
-          <div class="proj-grid">
-            <article class="proj-card" data-detail="proj-1">
-              <h4>“珠联璧合”珠宝盲盒</h4>
-              <p class="muted">项目负责人 · 2023.05 — 2023.06</p>
-            </article>
-            <article class="proj-card" data-detail="proj-2">
-              <h4>“印象派”模块化猫抓板</h4>
-              <p class="muted">设计师 · 2023.03 — 2023.04</p>
-            </article>
-            <article class="proj-card" data-detail="proj-3">
-              <h4>“青年绘团史”文创桌游</h4>
-              <p class="muted">玩法策划与视觉设计师 · 2022.03 — 2022.05</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="edu" class="panel" tabindex="0">
-        <div class="panel-inner">
-          <h2 class="panel-title">教育背景</h2>
-          <h3>北京理工大学 — 产品设计专业，艺术学学士</h3>
-          <p class="muted">2020.10 — 2024.06</p>
-          <p><strong>GPA：3.7 / 4.0</strong></p>
-          <p>核心课程：人因工程（94/100）、专利信息与科技创新（100/100）、设计调研（92/100）、首饰设计与制作（91/100）、交互与体验设计（91/100）</p>
-        </div>
-      </section>
-
-      <section id="awards" class="panel" tabindex="0">
-        <div class="panel-inner">
-          <h2 class="panel-title">荣誉证书</h2>
-          <ul class="awards-list">
-            <li>金奖，“青创北京”挑战杯首都大学生创业计划竞赛“青年绘团史”专项赛（省级，2022.06）</li>
-            <li>优秀奖，第二届中国宠物产业工业设计竞赛“宠物造物节”（2023.09）</li>
-            <li>优秀奖，北京大学生工业设计竞赛（2023.08）</li>
-            <li>北京理工大学“优秀学生”荣誉称号（2021.12）</li>
-            <li>北京理工大学优秀学生奖学金（2021—2022 学年获奖 4 次，含二等奖 1 次、三等奖 3 次）</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="about" class="panel" tabindex="0">
-        <div class="panel-inner">
-          <h2 class="panel-title">自我评价</h2>
-          <h3>校园经历</h3>
-          <p>知艺书院青年志愿者协会｜秘书长（2022.09 — 2023.07）</p>
-          <p>组织协调多项校园及社区活动，包括心理健康节、展览志愿服务、旧衣回收等。</p>
-        </div>
-      </section>
-    </main>
+    <main class="container" id="main" data-content></main>
 
     <div id="detailModal" class="modal" aria-hidden="true">
       <div class="modal-panel" role="dialog" aria-modal="true">
@@ -145,10 +32,11 @@
     </div>
 
     <footer class="footer">
-      <small>产品设计 · 东方美学 · 非遗工艺</small>
+      <small data-profile="footer"></small>
     </footer>
   </div>
 
+  <script src="./resume-data.js"></script>
   <script src="./script.js" defer></script>
 </body>
 </html>
