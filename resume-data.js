@@ -1,27 +1,24 @@
 window.resumeData = {
   profile: {
     name: '王文卓',
-    role: '产品设计师 / 珠宝品牌创业者',
+    role: '首饰设计师 · 品牌主理人',
     avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=320&q=85',
     avatarAlt: '王文卓照片',
     introTitle: '简介',
     intro: '产品设计专业艺术学学士，现任上海念此石珠宝有限公司联合创始人兼首席产品官。关注东方美学、非遗工艺与当代生活方式的连接，擅长从调研、概念、设计开发到品牌与供应链的全流程推进。',
     contact: [
       { label: '邮箱', value: 'wangwenzhuo0045@163.com', href: 'mailto:wangwenzhuo0045@163.com' },
-      { label: '电话', value: '+86 15389503713' },
+      { label: '电话', value: '+86 15389503713', href: 'tel:+8615389503713' },
       { label: '地点', value: '上海' }
     ],
     footer: '产品设计 · 东方美学 · 非遗工艺'
   },
   navigation: [
-    { id: 'intro', label: '概览' },
-    { id: 'work', label: '工作' },
-    { id: 'projects', label: '项目' },
-    { id: 'edu', label: '教育' },
-    { id: 'awards', label: '荣誉' },
-    { id: 'skills', label: '技能' },
-    { id: 'about', label: '校园' },
-    { label: 'App', href: './app.html' }
+    { id: 'intro', label: '首页' },
+    { id: 'work', label: '简历' },
+    { id: 'projects', label: '作品' },
+    { id: 'about', label: '关于' },
+    { id: 'contact', label: '联系' }
   ],
   skills: [
     { title: '设计软件', detail: 'Rhino、Photoshop、Illustrator、Keyshot、Figma' },
@@ -55,30 +52,36 @@ window.resumeData = {
     items: [
       {
         id: 'proj-1',
-        title: '“珠联璧合”珠宝盲盒',
-        role: '项目负责人',
-        period: '2023.05 — 2023.06',
-        description: '主导开发一款融合情感设计与互动体验的系列珠宝盲盒，目标人群为追求“寺庙祈福”体验的年轻消费者。负责从市场调研、概念设计到 3D 建模及测试的全流程管理，项目获得北京大学生工业设计竞赛优秀奖。'
+        title: '岫云石品牌：东方美学首饰品牌 0→1',
+        role: '项目负责人', category: '品牌 / 商业',
+        period: '品牌 / 商业 · 2024—至今',
+        color: '#8fcbbe', image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1200&q=85',
+        subtitle: '让东方美学成为可以被日常佩戴的光。', description: '从品牌战略、用户研究到产品、包装与供应链，完整推进上海念此石珠宝从 0 到 1。'
       },
       {
         id: 'proj-2',
-        title: '“印象派”模块化猫抓板',
-        role: '设计师',
-        period: '2023.03 — 2023.04',
-        description: '以“人与宠物相互依存又彼此独立”为理念，设计可更换卷轴式色板的模块化猫抓板。猫咪玩耍时，爪痕自然累积形成独特的印象派画作，创造自然互动并美化家居空间。项目荣获第二届中国宠物产业工业设计竞赛“宠物造物节”优秀奖。'
+        title: '我本应在此：记忆与缺席的诗性首饰',
+        role: '设计师', category: '艺术首饰 / 情感',
+        period: '艺术首饰 / 情感 · 2023',
+        color: '#e8d9ce', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=85',
+        subtitle: '有些缺席不是空白，而是记忆留下的形状。', description: '以未来映射与场景叙事为线索，探索自助手次计划中人与物的陪伴关系。'
       },
       {
         id: 'proj-3',
-        title: '“青年绘团史”文创桌游',
-        role: '玩法策划与视觉设计师',
-        period: '2022.03 — 2022.05',
-        description: '参与庆祝建团百年的桌游设计，主要负责游戏机制和包装视觉设计。项目获得“青创北京”挑战杯首都大学生创业计划竞赛“青年绘团史”专项赛金奖（省级）。'
+        title: '信仰与商业：当代珠串中的世俗与神圣',
+        role: '批判设计 / 文创', category: '批判设计 / 文创', period: '批判设计 · 2023', color: '#5a1410',
+        image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=85',
+        subtitle: '当一串佛珠进入商业，它仍然只属于信仰吗？', description: '通过历史谱系、雍和宫地图与产品线研究，观察世俗消费如何重新定义神圣物件。'
+      },
+      { id: 'proj-4', title: '敬赠地球：取之天地，还于自然', role: '可持续 / 可穿戴艺术', category: '可持续 / 可穿戴艺术', period: '可持续设计 · 2023', color: '#2f5b3b', image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=85', subtitle: '材料来自土地，佩戴也应回到土地。', description: '以生物炭材料实验为起点，将森林、苔藓与可穿戴艺术组织成一场献给地球的展览。'
+      },
+      { id: 'proj-5', title: '损伤之美：鹅卵石参与式设计先导计划', role: '服务设计 / 公众参与', category: '服务设计 / 公众参与', period: '服务设计 · 2023', color: '#2c4e8a', image: 'https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1200&q=85', subtitle: '让每一道损伤，都成为共同创作的入口。', description: '通过服务蓝图、材料包与公众参与流程，邀请人们重新理解鹅卵石与“完美”的关系。'
       }
     ]
   },
   education: {
     title: '教育背景',
-    school: '北京理工大学 — 产品设计专业，艺术学学士',
+    school: '香港岭南大学 · ATB（艺术科技与商业）硕士在读 / 北京理工大学 — 产品设计专业，艺术学学士',
     period: '2020.10 — 2024.06',
     gpa: 'GPA：3.7 / 4.0',
     courses: '核心课程：人因工程（94/100）、专利信息与科技创新（100/100）、设计调研（92/100）、首饰设计与制作（91/100）、交互与体验设计（91/100）'
