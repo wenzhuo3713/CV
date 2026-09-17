@@ -69,6 +69,7 @@
   function activatePanel(id) {
     const target = document.getElementById(id);
     if (!target) return;
+    target.classList.add('in');
     document.querySelectorAll('.panel').forEach((item) => item.classList.toggle('active', item === target));
     document.querySelectorAll('.nav-btn').forEach((button) => button.classList.toggle('active', button.dataset.target === id));
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });

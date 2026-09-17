@@ -148,8 +148,8 @@ button { font: inherit; }
   padding: 64px 64px var(--frame-section-pb);
   background: var(--e-light);
   border-top: 1px solid var(--e-grey-light);
-  opacity: 0;
-  transform: translateY(18px);
+  opacity: 1;
+  transform: none;
   transition: opacity var(--dur-quick) var(--ease-standard), transform var(--dur-shift) var(--ease-back);
   scroll-margin-top: var(--frame-sticky-top);
 }
