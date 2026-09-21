@@ -18,7 +18,8 @@ window.resumeData = {
     { id: 'work', label: '简历' },
     { id: 'projects', label: '作品' },
     { id: 'about', label: '关于' },
-    { id: 'contact', label: '联系' }
+    { id: 'contact', label: '联系' },
+    { label: '3D模型', href: './3d.html' }
   ],
   skills: [
     { title: '设计软件', detail: 'Rhino、Photoshop、Illustrator、Keyshot、Figma' },

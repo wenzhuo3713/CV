@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D模型</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --e-dark: #292919;
+            --e-light: #f7f7ee;
+            --e-grey-light: #dcdcd0;
+            --e-accent: #5433eb;
+            --e-accent-bright: #8051ff;
+            --e-g5: #8c8c8c;
+            --font-display: 'Noto Sans SC', 'PingFang SC', sans-serif;
+            --font-ui: 'Inter', 'Noto Sans SC', sans-serif;
+            --font-serif: 'Noto Serif SC', 'Songti SC', serif;
+            --font-poetic: 'Cormorant Garamond', Georgia, serif;
+            --frame-topbar-h: 50px;
+            --frame-rail-w: 256px;
+            --frame-content-w: 1024px;
+            --frame-section-pb: 100px;
+            --display-xl: clamp(72px, 11vw, 176px);
+            --h2-size: clamp(38px, 5vw, 60px);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--e-light);
+            color: var(--e-dark);
+            font-family: var(--font-display);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .viewport {
+            width: min(var(--frame-content-w), calc(100% - var(--frame-rail-w)));
+            margin: 0 0 0 var(--frame-rail-w);
+            padding: var(--frame-topbar-h) 0 0;
+        }
+
+        .header {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 9999;
+            height: var(--frame-topbar-h);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            background: var(--e-dark);
+            color: var(--e-light);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-mark {
+            display: grid;
+            place-items: center;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: var(--e-light);
+            color: var(--e-dark);
+            font: 700 16px var(--font-poetic);
+        }
+
+        .meta {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .name {
+            margin: 0;
+            font: 500 14px/1 var(--font-display);
+            letter-spacing: -.01em;
+        }
+
+        .brand-en {
+            margin: 3px 0 0;
+            color: #d4d4c7;
+            font: 400 10px/1 var(--font-ui);
+            letter-spacing: .16em;
+        }
+
+        .nav {
+            position: fixed;
+            left: 0;
+            top: var(--frame-topbar-h);
+            bottom: 0;
+            width: var(--frame-rail-w);
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0;
+            padding: 42px 24px 28px;
+            background: var(--e-light);
+            border-right: 1px solid var(--e-grey-light);
+            overflow-y: auto;
+        }
+
+        .nav::before {
+            content: 'CHAPTERS / 2026';
+            margin-bottom: 24px;
+            color: var(--e-accent);
+            font: 500 10px/1 var(--font-ui);
+            letter-spacing: .14em;
+        }
+
+        .nav-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-height: 40px;
+            border: 0;
+            border-bottom: 1px solid var(--e-grey-light);
+            background: transparent;
+            color: var(--e-g5);
+            text-align: left;
+            cursor: pointer;
+            transition: color 0.15s ease, padding-left 0.4s ease;
+        }
+
+        .nav-btn::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            margin-right: 12px;
+            border: 1px solid currentColor;
+            border-radius: 50%;
+        }
+
+        .nav-btn:hover {
+            color: var(--e-dark);
+            padding-left: 6px;
+        }
+
+        .nav-btn.active {
+            color: var(--e-dark);
+            font-weight: 700;
+        }
+
+        .nav-btn.active::before {
+            background: var(--e-accent);
+            border-color: var(--e-accent);
+            transform: scale(1.15);
+        }
+
+        .nav-btn:last-child {
+            margin-top: 24px;
+            border: 0;
+            min-height: 30px;
+            color: var(--e-accent);
+            font-weight: 500;
+        }
+
+        .nav-btn:last-child::before {
+            display: none;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding: 0;
+        }
+
+        .panel {
+            position: relative;
+            min-height: 420px;
+            padding: 64px 64px var(--frame-section-pb);
+            background: var(--e-light);
+            border-top: 1px solid var(--e-grey-light);
+        }
+
+        .panel-inner {
+            width: 100%;
+            max-width: 896px;
+            margin: auto;
+        }
+
+        .hero-panel {
+            min-height: calc(100vh - var(--frame-topbar-h));
+            display: grid;
+            align-items: center;
+            padding-top: 90px;
+            background: var(--e-dark);
+            color: var(--e-light);
+            border-top: 0;
+        }
+
+        .eyebrow,
+        .specimen {
+            margin: 0;
+            color: var(--e-g5);
+            font: 500 11px/1 var(--font-ui);
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        .hero-panel .eyebrow {
+            color: var(--e-accent-bright);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .hero-title {
+            max-width: 720px;
+            margin: 28px 0 26px;
+            font: 400 var(--display-xl)/.96 var(--font-serif);
+            letter-spacing: -.04em;
+        }
+
+        .lead {
+            max-width: 560px;
+            color: #d6d6c9;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .hero-art {
+            position: relative;
+            min-height: 410px;
+            background: #31372e;
+            overflow: hidden;
+        }
+
+        .model-stage {
+            position: relative;
+            min-height: 410px;
+            background: #31372e;
+            overflow: hidden;
+        }
+
+        .model-stage canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 410px;
+        }
+
+        .model-status {
+            position: absolute;
+            left: 18px;
+            bottom: 16px;
+            color: #d6d6c9;
+            font: 500 10px/1 var(--font-ui);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .model-status.is-error {
+            color: #ffb4a8;
+        }
+
+        .hero-orbit {
+            position: absolute;
+            width: 72%;
+            aspect-ratio: 1;
+            top: 14%;
+            left: 14%;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 50%;
+            transform: rotate(-22deg) scaleY(.48);
+        }
+
+        .hero-orbit::after {
+            content: '';
+            position: absolute;
+            inset: 18%;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 50%;
+        }
+
+        .hero-bead {
+            position: absolute;
+            width: 72px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        }
+
+        .hero-bead-a {
+            top: 38%;
+            left: 23%;
+            background: #8fcbbe;
+        }
+
+        .hero-bead-b {
+            right: 20%;
+            bottom: 23%;
+            width: 38px;
+            background: #9e2b25;
+        }
+
+        .hero-caption {
+            position: absolute;
+            top: 12%;
+            right: 9%;
+            color: var(--e-light);
+            font: 700 24px/.95 var(--font-poetic);
+            letter-spacing: .14em;
+        }
+
+        .hero-caption small {
+            display: block;
+            margin-top: 14px;
+            color: #ddd9ca;
+            font: 500 9px/1 var(--font-ui);
+            letter-spacing: .12em;
+        }
+
+        .contact-panel {
+            background: var(--e-dark);
+            color: var(--e-light);
+        }
+
+        .contact-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .contact-grid h2 {
+            margin: 8px 0 0;
+            font: 700 var(--h2-size)/.95 var(--font-display);
+            letter-spacing: -.03em;
+        }
+
+        .muted {
+            margin: 0;
+            color: #d6d6c9;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .contact-list {
+            display: grid;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 12px;
+        }
+
+        .contact-list a {
+            display: grid;
+            grid-template-columns: 120px 1fr 30px;
+            align-items: center;
+            gap: 18px;
+            min-height: 92px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            color: var(--e-light);
+        }
+
+        .contact-list .specimen {
+            color: #d6d6c9;
+            letter-spacing: .08em;
+        }
+
+        .contact-list strong {
+            font: 400 clamp(20px, 2vw, 28px)/1.3 var(--font-display);
+            letter-spacing: -.02em;
+        }
+
+        .contact-list span:last-child {
+            justify-self: end;
+            font-size: 28px;
+            line-height: 1;
+        }
+
+        @media (max-width: 980px) {
+            .viewport {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .nav {
+                position: static;
+                width: 100%;
+                border-right: 0;
+                border-bottom: 1px solid var(--e-grey-light);
+                padding: 20px 16px;
+            }
+
+            .header {
+                position: static;
+                width: 100%;
+            }
+
+            .container {
+                padding-top: 0;
+            }
+
+            .panel {
+                padding: 40px 20px 70px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: clamp(46px, 14vw, 90px);
+            }
+
+            .contact-list a {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                min-height: auto;
+                padding: 18px 0;
+            }
+
+            .contact-list span:last-child {
+                justify-self: start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="viewport">
+        <header class="header">
+            <a class="brand" href="./index.html" aria-label="返回首页">
+                <span class="brand-mark" aria-hidden="true">W</span>
+                <div class="meta">
+                    <h1 class="name">王文卓</h1>
+                    <p class="brand-en">WANG WENZHUO</p>
+                </div>
+            </a>
+            <nav class="nav" aria-label="主导航">
+                <a class="nav-btn nav-link" href="./index.html">首页</a>
+                <a class="nav-btn nav-link active" href="./3d.html">3D模型</a>
+                <a class="nav-btn nav-link" href="./app.html">App</a>
+            </nav>
+        </header>
+
+        <main class="container">
+            <section class="panel hero-panel">
+                <div class="panel-inner">
+                    <div class="hero-grid">
+                        <div>
+                            <p class="eyebrow">3D / MODEL / EXPERIMENT</p>
+                            <h2 class="hero-title">3D模型</h2>
+                            <p class="lead">这里是一个简洁的 3D 模型展示页面，保留了主站的视觉氛围，用于展示空间构想、模型实验或静态内容模块。</p>
+                        </div>
+
+                        <div class="model-stage" id="modelStage">
+                            <div class="model-status" id="modelStatus">正在加载模型</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="panel contact-panel" tabindex="0">
+                <div class="panel-inner">
+                    <div class="contact-grid">
+                        <div>
+                            <p class="eyebrow">KEEP IN TOUCH</p>
+                            <h2>聊聊关于首饰、<br>非遗与品牌的事。</h2>
+                            <p class="muted">欢迎求职、合作，也欢迎交换关于材料、地方与日常生活的想法。</p>
+                        </div>
+                        <div class="contact-list">
+                            <a href="mailto:wangwenzhuo0045@163.com">
+                                <span class="specimen">邮箱</span>
+                                <strong>wangwenzhuo0045@163.com</strong>
+                                <span>↗</span>
+                            </a>
+                            <a href="tel:+8615389503713">
+                                <span class="specimen">电话</span>
+                                <strong>+86 15389503713</strong>
+                                <span>↗</span>
+                            </a>
+                            <a href="#">
+                                <span class="specimen">地点</span>
+                                <strong>上海</strong>
+                                <span>↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+            }
+        }
+    </script>
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+        import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+        import { MTLLoader } from 'https://unpkg.com/three@0.160.0/examples/jsm/loaders/MTLLoader.js';
+        import { OBJLoader } from 'https://unpkg.com/three@0.160.0/examples/jsm/loaders/OBJLoader.js';
+
+        const stage = document.getElementById('modelStage');
+        const status = document.getElementById('modelStatus');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(35, 1, 0.01, 100);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        const controls = new OrbitControls(camera, renderer.domElement);
+        const modelRoot = new THREE.Group();
+
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+        renderer.setClearColor(0x31372e, 1);
+        stage.appendChild(renderer.domElement);
+        scene.add(modelRoot);
+        scene.add(new THREE.HemisphereLight(0xf7f7ee, 0x292919, 2.1));
+
+        const keyLight = new THREE.DirectionalLight(0xffffff, 3.2);
+        keyLight.position.set(3, 4, 5);
+        scene.add(keyLight);
+
+        controls.enableDamping = true;
+        controls.enablePan = false;
+        controls.minDistance = 1.2;
+        controls.maxDistance = 8;
+
+        function resize() {
+            const width = stage.clientWidth;
+            const height = stage.clientHeight;
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height, false);
+        }
+
+        function frameModel(model) {
+            const bounds = new THREE.Box3().setFromObject(model);
+            const size = bounds.getSize(new THREE.Vector3());
+            const center = bounds.getCenter(new THREE.Vector3());
+            const largestSide = Math.max(size.x, size.y, size.z);
+            model.scale.setScalar(2.2 / largestSide);
+            model.position.sub(center.multiplyScalar(model.scale.x));
+            camera.position.set(0, 0.45, 3.1);
+            controls.target.set(0, 0, 0);
+            controls.update();
+        }
+
+        const modelPath = './assets/3dmodel/';
+        const materials = new MTLLoader();
+        materials.setPath(modelPath);
+        materials.load('material.mtl', (materialCreator) => {
+            materialCreator.preload();
+            const loader = new OBJLoader();
+            loader.setMaterials(materialCreator);
+            loader.setPath(modelPath);
+            loader.load('db3553d0d5c9a13417de33e4aef7d311.obj', (model) => {
+                model.traverse((child) => {
+                    if (child.isMesh) {
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                    }
+                });
+                modelRoot.add(model);
+                frameModel(model);
+                status.textContent = '拖拽旋转 · 滚轮缩放';
+            }, undefined, () => {
+                status.textContent = '模型加载失败';
+                status.classList.add('is-error');
+            });
+        }, undefined, () => {
+            status.textContent = '材质加载失败';
+            status.classList.add('is-error');
+        });
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    </script>
+</body>
+</html>

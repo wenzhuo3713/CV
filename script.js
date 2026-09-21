@@ -15,7 +15,12 @@
     document.querySelector('[data-profile="footer"]').textContent = data.profile.footer;
   }
   function renderNavigation() {
-    navigation.innerHTML = data.navigation.map((item, index) => `<button class="nav-btn${index === 0 ? ' active' : ''}" data-target="${item.id}">${item.label}</button>`).join('');
+    navigation.innerHTML = data.navigation.map((item, index) => {
+      if (item.href) {
+        return `<a class="nav-btn nav-link${index === 0 ? ' active' : ''}" href="${item.href}">${item.label}</a>`;
+      }
+      return `<button class="nav-btn${index === 0 ? ' active' : ''}" data-target="${item.id}">${item.label}</button>`;
+    }).join('');
   }
   function panel(id, inner, extra) {
     return `<section id="${id}" class="panel ${extra || ''}" tabindex="0"><div class="panel-inner">${inner}</div></section>`;
